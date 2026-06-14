@@ -10,6 +10,18 @@ Ce dépôt contient les différents travaux pratiques réalisés en Python.
 - TP5 : HTTP Communication
 - TP6 : REST API
 - TP7 : Serialization
+- PROJET
+  
+# PROJET DE Plateforme Distribuée de Détection et Qualification d’E-mails
+
+## Réalisé par
+
+- Mouaad Bouziani (mouadbouziani05-cs)
+- Achraf Amarifi (ACHRAF-CS)
+- Abdelmoughit Mossaid (AbdelmoughitMossaid)
+
+
+Projet de fin de semestre – Applications Distribuées
 
 ## Technologies utilisées
 - Python
