@@ -4,8 +4,7 @@
 Ce dépôt contient les différents travaux pratiques réalisés en Python.
 
 ## Contenu
-  Travail réalisé individuellement par :
-Mouaad Bouziani:
+  
 - TP1 : API Client/Serveur
 - TP2 : Authentification et Base de Données
 - TP3 : Protobuf et Sérialisation
