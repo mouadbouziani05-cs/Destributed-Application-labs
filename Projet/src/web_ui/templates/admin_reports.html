@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Vue administrateur{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Administration</p>
+      <h2>Signalements globaux</h2>
+      <p class="muted">Tous les signalements visibles par le rôle administrateur.</p>
+    </div>
+    <a class="primary-link" href="{{ url_for('dashboard') }}">Retour au tableau de bord</a>
+  </div>
+
+  <div class="stat-row admin-stats">
+    <div>
+      <span class="stat-label">Total signalements</span>
+      <strong>{{ reports|length }}</strong>
+    </div>
+    <div>
+      <span class="stat-label">Utilisateur connecté</span>
+      <strong>{{ user.username }} (admin)</strong>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="section-head">
+    <h2>Signalements de la plateforme</h2>
+    <p>Cette vue agrège l'activité de tous les utilisateurs.</p>
+  </div>
+  {% if reports %}
+    <div class="report-list">
+      {% for report in reports %}
+        <a class="report-card" href="{{ url_for('report_detail', report_id=report.report_id) }}">
+          <div>
+            <h3>{{ report.subject }}</h3>
+            <p>{{ report.sender }} · {{ report.username }} · {{ report.created_at }}</p>
+          </div>
+          <div class="badge {{ report.risk_level }}">{{ report.risk_level }} - {{ report.score }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">Aucun signalement disponible.</p>
+  {% endif %}
+</section>
+{% endblock %}

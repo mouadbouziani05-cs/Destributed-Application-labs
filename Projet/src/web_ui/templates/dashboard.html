@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Tableau de bord{% endblock %}
+{% block content %}
+<section class="grid two-col">
+  <article class="panel">
+    <p class="eyebrow">Utilisateur connecté</p>
+    <h2>{{ user.username }}</h2>
+    <p class="muted">Rôle: {{ user.role }}</p>
+    <a class="primary-link" href="{{ url_for('submit') }}">Soumettre un nouvel e-mail</a>
+    {% if user.role == 'admin' %}
+      <a class="primary-link" href="{{ url_for('admin_reports') }}">Vue administrateur</a>
+    {% endif %}
+  </article>
+  <article class="panel">
+    <p class="eyebrow">Résumé</p>
+    <div class="stat-row">
+      <div>
+        <span class="stat-label">Signalements</span>
+        <strong>{{ reports|length }}</strong>
+      </div>
+      <div>
+        <span class="stat-label">Dernière action</span>
+        <strong>{{ now.strftime('%Y-%m-%d %H:%M UTC') }}</strong>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="section-head">
+    <h2>Historique</h2>
+    <p>Les éléments sont renvoyés par le gateway et filtrés par rôle.</p>
+  </div>
+  {% if reports %}
+    <div class="report-list">
+      {% for report in reports %}
+        <a class="report-card" href="{{ url_for('report_detail', report_id=report.report_id) }}">
+          <div>
+            <h3>{{ report.subject }}</h3>
+            <p>{{ report.sender }}</p>
+          </div>
+          <div class="badge {{ report.risk_level }}">{{ report.risk_level }} - {{ report.score }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">Aucun signalement pour le moment.</p>
+  {% endif %}
+</section>
+{% endblock %}

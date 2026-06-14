@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Nouveau signalement{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="section-head">
+    <h2>Soumettre un e-mail suspect</h2>
+    <p>Le formulaire est validé puis envoyé au gateway pour analyse et stockage.</p>
+  </div>
+  <form method="post" class="form-card wide-form">
+    <label>
+      Expéditeur
+      <input type="email" name="sender" maxlength="254" value="{{ preset.get('sender', '') }}" required />
+    </label>
+    <label>
+      Objet
+      <input type="text" name="subject" maxlength="120" value="{{ preset.get('subject', '') }}" required />
+    </label>
+    <label>
+      Contenu
+      <textarea name="content" rows="10" maxlength="10000" required>{{ preset.get('content', '') }}</textarea>
+    </label>
+    <label>
+      Pièces jointes (séparées par des virgules)
+      <input type="text" name="attachments" maxlength="300" value="{{ preset.get('attachments', '') }}" />
+    </label>
+    <button type="submit">Analyser le signalement</button>
+  </form>
+</section>
+{% endblock %}

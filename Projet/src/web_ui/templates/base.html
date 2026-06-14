@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Plateforme phishing{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Plateforme distribuée</p>
+          <h1>Détection et qualification d'e-mails de phishing</h1>
+        </div>
+        <nav class="nav-links">
+          {% if session.get('access_token') %}
+            <a href="{{ url_for('dashboard') }}">Tableau de bord</a>
+            <a href="{{ url_for('submit') }}">Nouveau signalement</a>
+            <a href="{{ url_for('logout') }}">Déconnexion</a>
+          {% else %}
+            <a href="{{ url_for('login') }}">Connexion</a>
+          {% endif %}
+        </nav>
+      </header>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="messages">
+            {% for category, message in messages %}
+              <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      <main class="content">{% block content %}{% endblock %}</main>
+    </div>
+  </body>
+</html>

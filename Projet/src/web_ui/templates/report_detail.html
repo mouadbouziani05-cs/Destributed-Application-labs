@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Détail du signalement{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="section-head">
+    <h2>Détail du signalement</h2>
+    <span class="badge {{ report.risk_level }}">{{ report.risk_level }} - {{ report.score }}</span>
+  </div>
+  <div class="detail-grid">
+    <div><span>Expéditeur</span><strong>{{ report.sender }}</strong></div>
+    <div><span>Objet</span><strong>{{ report.subject }}</strong></div>
+    <div><span>Date</span><strong>{{ report.created_at }}</strong></div>
+    <div><span>Utilisateur</span><strong>{{ report.username }}</strong></div>
+  </div>
+  <div class="detail-block">
+    <h3>URLs détectées</h3>
+    {% if report.urls_detected %}
+      <ul>
+        {% for url in report.urls_detected %}
+          <li>{{ url }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">Aucune URL détectée.</p>
+    {% endif %}
+  </div>
+  <div class="detail-block">
+    <h3>Justification</h3>
+    <pre>{{ report.justification }}</pre>
+  </div>
+</section>
+{% endblock %}

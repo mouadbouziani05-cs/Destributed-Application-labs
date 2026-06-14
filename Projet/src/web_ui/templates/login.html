@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Connexion{% endblock %}
+{% block content %}
+<section class="panel hero-panel">
+  <div>
+    <h2>Connexion sécurisée</h2>
+    <p>Authentifiez-vous pour soumettre un e-mail suspect ou consulter votre historique.</p>
+  </div>
+  <form method="post" class="form-card">
+    <label>
+      Identifiant
+      <input type="text" name="username" maxlength="64" required />
+    </label>
+    <label>
+      Mot de passe
+      <input type="password" name="password" maxlength="128" required />
+    </label>
+    <button type="submit">Se connecter</button>
+  </form>
+  <p class="hint">Compte de démonstration: <strong>analyst / User!2345</strong></p>
+</section>
+{% endblock %}
