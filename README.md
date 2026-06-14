@@ -11,6 +11,7 @@ Ce dépôt contient les différents travaux pratiques réalisés en Python.
 - TP6 : REST API
 - TP7 : Serialization
 - PROJET
+- RAPPORT FINALE (projet)
   
 # PROJET DE Plateforme Distribuée de Détection et Qualification d’E-mails
 
